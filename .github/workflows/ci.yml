@@ -1,0 +1,18 @@
+name: Playwright Test (Windows)
+
+on: [push, pull_request]  # Trigger on push and pull request events
+
+jobs:
+  test-job:
+    runs-on: windows-latest  # Specify Windows runner
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3  # Set up Node.js environment
+        with:
+          node-version: 20  # Adjust Node.js version as needed
+      - run: npm install  # Install project dependencies
+      - uses: microsoft/playwright-action@v2  # Use Playwright action
+        with:
+          os: windows-latest  # Specify Windows OS for Playwright action
+          playwright-version: latest  # Specify Playwright version
+      - run: npx playwright test  # Run your Playwright tests (adjust command if needed)
